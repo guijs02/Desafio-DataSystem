@@ -17,7 +17,7 @@ namespace TaskManagement.Application.UseCases.Create
 
             await repository.CreateAsync(task, cancellationToken);
 
-            return new CreateTaskOutput(input.Title, input.Description, task.CreatedAt, input.FinishAt, input.Status);
+            return new CreateTaskOutput(task.Id, input.Title, input.Description, task.CreatedAt, input.FinishAt, input.Status);
         }
     }
 }

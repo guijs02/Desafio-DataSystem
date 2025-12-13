@@ -5,12 +5,14 @@ using TaskManagement.Domain.Entity;
 
 namespace TaskManagement.Application.UseCases.Create.Output
 {
-    public class CreateTaskOutput(string title, 
+    public class CreateTaskOutput(int id, 
+        string title, 
         string? description, 
         DateTime createdAt, 
         DateTime? finishAt, 
         Status status)
     {
+        public int Id { get; set; } = id;
         public string Title { get; set; } = title;
 
         public string? Description { get; set; } = description;

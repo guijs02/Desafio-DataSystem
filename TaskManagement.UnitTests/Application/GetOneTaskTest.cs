@@ -2,6 +2,7 @@
 using Moq;
 using TaskManagement.Application.UseCases.Get;
 using TaskManagement.Domain.Entity;
+using TaskManagement.Domain.Exceptions;
 using TaskManagement.Domain.Repository;
 
 namespace TaskManagement.UnitTests.Application
@@ -38,8 +39,8 @@ namespace TaskManagement.UnitTests.Application
         }
 
         //should throw KeyNotFoundException when task not found
-        [Fact(DisplayName = nameof(ShouldThrowKeyNotFoundExceptionWhenTaskNotFound))]
-        public async System.Threading.Tasks.Task ShouldThrowKeyNotFoundExceptionWhenTaskNotFound()
+        [Fact(DisplayName = nameof(ShouldThrowTaskNotFoundExceptionWhenTaskNotFound))]
+        public async System.Threading.Tasks.Task ShouldThrowTaskNotFoundExceptionWhenTaskNotFound()
         {
             var repositoryMock = new Mock<ITaskRepository>();
             var taskId = 1;
@@ -51,7 +52,7 @@ namespace TaskManagement.UnitTests.Application
 
            var act = async () => await useCase.Handle(taskId, CancellationToken.None);
 
-            await act.Should().ThrowAsync<KeyNotFoundException>()
+            await act.Should().ThrowAsync<TaskNotFoundException>()
                 .WithMessage($"Task with ID {taskId} not found.");
 
             repositoryMock.Verify(x => x.GetByIdAsync(taskId, It.IsAny<CancellationToken>()), Times.Once);

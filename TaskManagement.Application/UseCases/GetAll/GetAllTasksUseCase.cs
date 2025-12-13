@@ -14,10 +14,13 @@ namespace TaskManagement.Application.UseCases.GetAll
             {
                 Id = task.Id,
                 Title = task.Title,
-                Description = task.Description,
+                Description = task.Description!,
                 CreatedAt = task.CreatedAt,
                 FinishAt = task.FinishAt,
-                Status = task.Status
+                Status = task.Status,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                TotalCount = tasks.Count()
             }).ToList();
 
         }

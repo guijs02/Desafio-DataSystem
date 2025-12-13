@@ -1,4 +1,5 @@
 ﻿using TaskManagement.Application.Interfaces;
+using TaskManagement.Domain.Exceptions;
 using TaskManagement.Domain.Repository;
 
 namespace TaskManagement.Application.UseCases.Delete
@@ -7,7 +8,14 @@ namespace TaskManagement.Application.UseCases.Delete
     {
         public async Task Handle(int id, CancellationToken cancellationToken)
         {
-            await repository.DeleteAsync(id, cancellationToken);
+            var task = await repository.GetByIdAsync(id, cancellationToken);
+
+            if (task == null)
+            {
+                throw new TaskNotFoundException($"Task with id {id} not found.");
+            }
+
+            await repository.DeleteAsync(task, cancellationToken);
         }
     }
 }

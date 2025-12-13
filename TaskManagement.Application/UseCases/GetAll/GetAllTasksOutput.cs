@@ -12,7 +12,7 @@ namespace TaskManagement.Application.UseCases.GetAll
         public DateTime? FinishAt { get; set; }
         public Status Status { get; set; }
         public int? TotalCount { get; set; }
-        public int? PageCount { get; set; }
+        public int? PageNumber { get; set; }
         public int? PageSize { get; set; }
 
 

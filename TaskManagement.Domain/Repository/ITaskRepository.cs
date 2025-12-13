@@ -14,6 +14,6 @@ namespace TaskManagement.Domain.Repository
 
         Task UpdateAsync(Entity.Task task, CancellationToken cancellationToken);
 
-        Task DeleteAsync(int id, CancellationToken cancellationToken);
+        Task DeleteAsync(Domain.Entity.Task task, CancellationToken cancellationToken);
     }
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TaskManagement.Application.Interfaces;
+﻿using TaskManagement.Application.Interfaces;
 using TaskManagement.Application.UseCases.Update.Input;
 using TaskManagement.Application.UseCases.Update.Output;
+using TaskManagement.Domain.Exceptions;
 using TaskManagement.Domain.Repository;
 
 namespace TaskManagement.Application.UseCases.Update
@@ -17,13 +15,14 @@ namespace TaskManagement.Application.UseCases.Update
 
             if (task == null)
             {
-                throw new InvalidOperationException();
+                throw new TaskNotFoundException($"Task with ID {updateTaskInput.Id} not found.");
             }
 
             //should update the task properties
             task.UpdateTitle(updateTaskInput.Title);
             task.UpdateDescription(updateTaskInput.Description);
             task.UpdateFinishAt(updateTaskInput.FinishAt);
+            task.UpdateStatus(updateTaskInput.Status);
 
             //should save the updated task to the repository
             await repository.UpdateAsync(task, cancellationToken);
