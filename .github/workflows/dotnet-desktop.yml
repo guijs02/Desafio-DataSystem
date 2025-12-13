@@ -27,7 +27,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Testes de unidade
-      run: dotnet test TaskManagement.UnitTest
+      run: dotnet test TaskManagement.UnitTests
           
     - name: Publish
       run: dotnet publish -c Release -o output
