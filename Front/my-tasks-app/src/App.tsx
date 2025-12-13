@@ -60,6 +60,18 @@ function App() {
     loadTasks();
   }, [pageNumber]);
 
+  // Helper function to convert datetime-local to ISO string preserving local time
+  const convertToLocalISO = (dateTimeLocal: string): string => {
+    // datetime-local format: YYYY-MM-DDTHH:mm
+    // Parse directly from string to avoid timezone conversion
+    const [datePart, timePart] = dateTimeLocal.split('T');
+    const [year, month, day] = datePart.split('-');
+    const [hours, minutes] = timePart.split(':');
+    
+    // Return in ISO format with local time (no timezone conversion)
+    return `${year}-${month}-${day}T${hours}:${minutes}:00.000`;
+  };
+
   // Validações
   const validateForm = (): string | null => {
     if (formData.description && formData.description.length > 100) {
@@ -68,7 +80,10 @@ function App() {
     
     if (formData.finishAt) {
       const finishDate = new Date(formData.finishAt);
+      finishDate.setSeconds(0, 0);
+      
       const comparisonDate = editingTask?.createdAt ? new Date(editingTask.createdAt) : new Date();
+      comparisonDate.setSeconds(0, 0);
       
       if (finishDate < comparisonDate) {
         return editingTask 
@@ -108,7 +123,7 @@ function App() {
     try {
       const submitData: CreateTaskInput = {
         ...formData,
-        finishAt: formData.finishAt ? new Date(formData.finishAt).toISOString() : undefined,
+        finishAt: formData.finishAt ? convertToLocalISO(formData.finishAt) : undefined,
       };
       await apiService.createTask(submitData);
       resetForm();
@@ -138,7 +153,7 @@ function App() {
         id: editingTask.id,
         title: formData.title || editingTask.title,
         description: formData.description,
-        finishAt: formData.finishAt ? new Date(formData.finishAt).toISOString() : undefined,
+        finishAt: formData.finishAt ? convertToLocalISO(formData.finishAt) : undefined,
         status: formData.status,
       };
       await apiService.updateTask(updateInput);
@@ -167,13 +182,24 @@ function App() {
     }
   };
 
+  // Helper function to convert ISO string to datetime-local format
+  const convertISOToLocalDateTime = (isoString: string): string => {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+
   // Start editing
   const startEdit = (task: Task) => {
     setEditingTask(task);
     setFormData({
       title: task.title,
       description: task.description || '',
-      finishAt: task.finishAt ? new Date(task.finishAt).toISOString().slice(0, 16) : '',
+      finishAt: task.finishAt ? convertISOToLocalDateTime(task.finishAt) : '',
       status: task.status,
     });
     setShowCreateForm(false);
