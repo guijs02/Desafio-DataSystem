@@ -3,6 +3,8 @@ using Moq;
 using TaskManagement.Application.UseCases.GetAll;
 using TaskManagement.Domain.Entity;
 using TaskManagement.Domain.Repository;
+using Task = System.Threading.Tasks.Task;
+using TaskEntity = TaskManagement.Domain.Entity.Task;
 
 namespace TaskManagement.UnitTests.Application
 {
@@ -11,12 +13,12 @@ namespace TaskManagement.UnitTests.Application
         //should create tests for GetAllTask use case
         // GetAllTask will use pagination to get all tasks from repository
         [Fact(DisplayName = nameof(ShouldGetAllTasksFromRepository))]
-        public async System.Threading.Tasks.Task ShouldGetAllTasksFromRepository()
+        public async Task ShouldGetAllTasksFromRepository()
         {
             // Arrange
             var repositoryMock = new Mock<ITaskRepository>();
             var useCase = new GetAllTasksUseCase(repositoryMock.Object);
-            var tasks = new List<TaskManagement.Domain.Entity.Task>
+            var tasks = new List<TaskEntity>
             {
                 new("Task 1", "Description 1", Status.Pending),
                 new("Task 2", "Description 2", Status.Completed)
@@ -43,7 +45,7 @@ namespace TaskManagement.UnitTests.Application
 
         //should return empty list when no tasks found
         [Fact(DisplayName = nameof(ShouldReturnEmptyListWhenNoTasksFound))]
-        public async System.Threading.Tasks.Task ShouldReturnEmptyListWhenNoTasksFound()
+        public async Task ShouldReturnEmptyListWhenNoTasksFound()
         {
             // Arrange
             var repositoryMock = new Mock<ITaskRepository>();

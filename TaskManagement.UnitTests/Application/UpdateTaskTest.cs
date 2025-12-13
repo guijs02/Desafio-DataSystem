@@ -5,6 +5,9 @@ using TaskManagement.Application.UseCases.Update.Input;
 using TaskManagement.Domain.Entity;
 using TaskManagement.Domain.Exception;
 using TaskManagement.Domain.Repository;
+using Task = System.Threading.Tasks.Task;
+using TaskEntity = TaskManagement.Domain.Entity.Task;
+
 
 namespace TaskManagement.UnitTests.Application
 {
@@ -12,7 +15,7 @@ namespace TaskManagement.UnitTests.Application
     {
         //should update a task with success here
         [Fact(DisplayName = nameof(UpdateTaskWithSuccess))]
-        public async System.Threading.Tasks.Task UpdateTaskWithSuccess()
+        public async Task UpdateTaskWithSuccess()
         {
             var repository = new Mock<ITaskRepository>();
 
@@ -29,7 +32,7 @@ namespace TaskManagement.UnitTests.Application
 
             //should setup the repository to return a task when GetByIdAsync is called
             repository.Setup(r => r.GetByIdAsync(updateTaskInput.Id, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new TaskManagement.Domain.Entity.Task
+                .ReturnsAsync(new TaskEntity
                 (
                     "Old Task Title",
                     "Old Task Description",
@@ -39,7 +42,7 @@ namespace TaskManagement.UnitTests.Application
 
             var output = await useCase.Handle(updateTaskInput, CancellationToken.None);
 
-            repository.Verify(r => r.UpdateAsync(It.IsAny<TaskManagement.Domain.Entity.Task>(), It.IsAny<CancellationToken>()), Times.Once);
+            repository.Verify(r => r.UpdateAsync(It.IsAny<TaskEntity>(), It.IsAny<CancellationToken>()), Times.Once);
 
             output.Should().NotBeNull();
             output.Title.Should().Be(updateTaskInput.Title);
@@ -50,7 +53,7 @@ namespace TaskManagement.UnitTests.Application
 
         //update task with failed
         [Fact(DisplayName = nameof(UpdateTaskWithFailed))]
-        public async System.Threading.Tasks.Task UpdateTaskWithFailed()
+        public async Task UpdateTaskWithFailed()
         {
             var repository = new Mock<ITaskRepository>();
 
@@ -67,7 +70,7 @@ namespace TaskManagement.UnitTests.Application
 
             //should setup the repository to return a task when GetByIdAsync is called
             repository.Setup(r => r.GetByIdAsync(updateTaskInput.Id, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new TaskManagement.Domain.Entity.Task
+                .ReturnsAsync(new TaskEntity
                 (
                     "Old Task Title",
                     "Old Task Description",
@@ -77,7 +80,7 @@ namespace TaskManagement.UnitTests.Application
 
             var act = async () => await useCase.Handle(updateTaskInput, CancellationToken.None);
 
-            repository.Verify(r => r.UpdateAsync(It.IsAny<TaskManagement.Domain.Entity.Task>(), It.IsAny<CancellationToken>()), Times.Never);
+            repository.Verify(r => r.UpdateAsync(It.IsAny<TaskEntity>(), It.IsAny<CancellationToken>()), Times.Never);
 
             await Assert.ThrowsAsync<DomainValidationException>(act);
 

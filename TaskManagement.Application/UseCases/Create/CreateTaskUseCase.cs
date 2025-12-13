@@ -2,7 +2,7 @@
 using TaskManagement.Application.UseCases.Create.Input;
 using TaskManagement.Application.UseCases.Create.Output;
 using TaskManagement.Domain.Repository;
-using Task = TaskManagement.Domain.Entity.Task;
+using TaskEntity = TaskManagement.Domain.Entity.Task;
 
 namespace TaskManagement.Application.UseCases.Create
 {
@@ -10,7 +10,7 @@ namespace TaskManagement.Application.UseCases.Create
     {
         public async Task<CreateTaskOutput> Handle(CreateTaskInput input, CancellationToken cancellationToken)
         {
-            var task = new Task(input.Title, input.Description, input.Status, input.FinishAt);
+            var task = new TaskEntity(input.Title, input.Description, input.Status, input.FinishAt);
 
             await repository.CreateAsync(task, cancellationToken);
 

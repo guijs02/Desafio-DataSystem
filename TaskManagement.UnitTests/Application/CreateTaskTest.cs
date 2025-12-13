@@ -5,6 +5,7 @@ using TaskManagement.Application.UseCases.Create.Input;
 using TaskManagement.Domain.Entity;
 using TaskManagement.Domain.Exception;
 using TaskManagement.Domain.Repository;
+using Task = System.Threading.Tasks.Task;
 
 namespace TaskManagement.UnitTests.Application
 {
@@ -12,7 +13,7 @@ namespace TaskManagement.UnitTests.Application
     {
         //should create a task with success here
         [Fact(DisplayName = nameof(CreateTaskWithSuccess))]
-        public async System.Threading.Tasks.Task CreateTaskWithSuccess()
+        public async Task CreateTaskWithSuccess()
         {
             var repository = new Mock<ITaskRepository>();
 
@@ -41,7 +42,7 @@ namespace TaskManagement.UnitTests.Application
         [InlineData("")]
         [InlineData(null)]
         [InlineData(" ")]
-        public async System.Threading.Tasks.Task ShouldThrowErrorWhenTitleIsEmpty(string? title)
+        public async Task ShouldThrowErrorWhenTitleIsEmpty(string? title)
         {
             var repository = new Mock<ITaskRepository>();
             var useCase = new CreateTaskUseCase(repository.Object);
@@ -60,7 +61,7 @@ namespace TaskManagement.UnitTests.Application
 
         //should thorw error when title exceeds 100 characters
         [Fact(DisplayName = nameof(ShouldThrowErrorWhenTitleExceeds100Characters))]
-        public async System.Threading.Tasks.Task ShouldThrowErrorWhenTitleExceeds100Characters()
+        public async Task ShouldThrowErrorWhenTitleExceeds100Characters()
         {
             var repository = new Mock<ITaskRepository>();
             var useCase = new CreateTaskUseCase(repository.Object);

@@ -1,17 +1,18 @@
 ﻿using Task = System.Threading.Tasks.Task;
+using TaskEntity = TaskManagement.Domain.Entity.Task;
 
 namespace TaskManagement.Domain.Repository
 {
     public interface ITaskRepository
     {
-        Task CreateAsync(Entity.Task task, CancellationToken cancellationToken);
+        Task CreateAsync(TaskEntity task, CancellationToken cancellationToken);
 
-        Task<Entity.Task?> GetByIdAsync(int id, CancellationToken cancellationToken);
+        Task<TaskEntity?> GetByIdAsync(int id, CancellationToken cancellationToken);
 
-        Task<IEnumerable<Entity.Task>> GetAllAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
+        Task<IEnumerable<TaskEntity>> GetAllAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
 
-        Task UpdateAsync(Entity.Task task, CancellationToken cancellationToken);
+        Task UpdateAsync(TaskEntity task, CancellationToken cancellationToken);
 
-        Task DeleteAsync(Domain.Entity.Task task, CancellationToken cancellationToken);
+        Task DeleteAsync(TaskEntity task, CancellationToken cancellationToken);
     }
 }

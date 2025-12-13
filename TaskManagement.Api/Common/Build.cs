@@ -7,7 +7,7 @@
         {
             var backendUrl = configuration["Cors:BackendUrl"] ?? string.Empty;
             var frontendUrl = configuration["Cors:FrontendUrl"] ?? string.Empty;
-            
+
             services.AddCors(options =>
             {
                 options.AddPolicy(ApiConfiguration.CorsPolicyName,

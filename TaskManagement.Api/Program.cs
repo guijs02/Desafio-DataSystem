@@ -1,10 +1,8 @@
 using TaskManagement.Api;
 using TaskManagement.Api.Common;
+using TaskManagement.Api.Middlewares;
 using TaskManagement.Application.DIP;
 using TaskManagement.Infraestructure.Build;
-using TaskManagement.Api.Middlewares;
-using FluentValidation;
-using TaskManagement.Application.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,6 +2,8 @@
 using TaskManagement.Application.UseCases.Delete;
 using TaskManagement.Domain.Entity;
 using TaskManagement.Domain.Repository;
+using Task = System.Threading.Tasks.Task;
+using TaskEntity = TaskManagement.Domain.Entity.Task;
 
 namespace TaskManagement.UnitTests.Application
 {
@@ -9,11 +11,11 @@ namespace TaskManagement.UnitTests.Application
     {
         //should create tests for DeleteTask use case
         [Fact(DisplayName = nameof(ShouldDeleteTaskFromRepository))]
-        public async System.Threading.Tasks.Task ShouldDeleteTaskFromRepository()
+        public async Task ShouldDeleteTaskFromRepository()
         {
             // Arrange
             var repositoryMock = new Mock<ITaskRepository>();
-            var task = new TaskManagement.Domain.Entity.Task
+            var task = new TaskEntity
             (
                 "Test Task",
                 "This is a test task",

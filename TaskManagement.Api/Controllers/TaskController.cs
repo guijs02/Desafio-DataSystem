@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using TaskManagement.Application.Interfaces;
 using TaskManagement.Application.UseCases.Create.Input;
 using TaskManagement.Application.UseCases.Update.Input;

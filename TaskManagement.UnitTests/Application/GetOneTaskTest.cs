@@ -4,6 +4,8 @@ using TaskManagement.Application.UseCases.Get;
 using TaskManagement.Domain.Entity;
 using TaskManagement.Domain.Exceptions;
 using TaskManagement.Domain.Repository;
+using Task = System.Threading.Tasks.Task;
+using TaskEntity = TaskManagement.Domain.Entity.Task;
 
 namespace TaskManagement.UnitTests.Application
 {
@@ -11,7 +13,7 @@ namespace TaskManagement.UnitTests.Application
     {
         //should get one task from repository
         [Fact(DisplayName = nameof(ShouldGetOneTaskFromRepository))]
-        public async System.Threading.Tasks.Task ShouldGetOneTaskFromRepository()
+        public async Task ShouldGetOneTaskFromRepository()
         {
             var repositoryMock = new Mock<ITaskRepository>();
 
@@ -21,7 +23,7 @@ namespace TaskManagement.UnitTests.Application
 
             //should setup repository to return a task when GetByIdAsync is called
             repositoryMock.Setup(x => x.GetByIdAsync(taskId, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new TaskManagement.Domain.Entity.Task
+                .ReturnsAsync(new TaskEntity
                 (
                     "Test Task",
                     "This is a test task",
@@ -40,7 +42,7 @@ namespace TaskManagement.UnitTests.Application
 
         //should throw KeyNotFoundException when task not found
         [Fact(DisplayName = nameof(ShouldThrowTaskNotFoundExceptionWhenTaskNotFound))]
-        public async System.Threading.Tasks.Task ShouldThrowTaskNotFoundExceptionWhenTaskNotFound()
+        public async Task ShouldThrowTaskNotFoundExceptionWhenTaskNotFound()
         {
             var repositoryMock = new Mock<ITaskRepository>();
             var taskId = 1;
@@ -48,7 +50,7 @@ namespace TaskManagement.UnitTests.Application
 
             //should setup repository to return null when GetByIdAsync is called
             repositoryMock.Setup(x => x.GetByIdAsync(taskId, It.IsAny<CancellationToken>()))
-                .ReturnsAsync((TaskManagement.Domain.Entity.Task?)null);
+                .ReturnsAsync((TaskEntity?)null);
 
             var act = async () => await useCase.Handle(taskId, CancellationToken.None);
 
