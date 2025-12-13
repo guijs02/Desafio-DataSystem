@@ -1,7 +1,4 @@
 ﻿using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TaskManagement.Application.UseCases.Delete;
 using TaskManagement.Domain.Entity;
 using TaskManagement.Domain.Repository;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TaskManagement.Domain.Exceptions
+﻿namespace TaskManagement.Domain.Exceptions
 {
     public class TaskNotFoundException : System.Exception
     {

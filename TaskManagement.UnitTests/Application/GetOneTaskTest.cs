@@ -50,7 +50,7 @@ namespace TaskManagement.UnitTests.Application
             repositoryMock.Setup(x => x.GetByIdAsync(taskId, It.IsAny<CancellationToken>()))
                 .ReturnsAsync((TaskManagement.Domain.Entity.Task?)null);
 
-           var act = async () => await useCase.Handle(taskId, CancellationToken.None);
+            var act = async () => await useCase.Handle(taskId, CancellationToken.None);
 
             await act.Should().ThrowAsync<TaskNotFoundException>()
                 .WithMessage($"Task with ID {taskId} not found.");

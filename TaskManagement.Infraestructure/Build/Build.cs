@@ -13,7 +13,7 @@ namespace TaskManagement.Infraestructure.Build
         {
             var connectionString = configuration.GetConnectionString("Database");
 
-            service.AddDbContext<TaskManagementContext>(opts => 
+            service.AddDbContext<TaskManagementContext>(opts =>
             opts.UseSqlServer(connectionString, b => b.MigrationsAssembly("TaskManagement.Infraestructure")));
             return service;
         }

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TaskManagement.Domain.Entity;
+﻿using TaskManagement.Domain.Entity;
 
 namespace TaskManagement.Application.UseCases.Create.Output
 {
-    public class CreateTaskOutput(int id, 
-        string title, 
-        string? description, 
-        DateTime createdAt, 
-        DateTime? finishAt, 
+    public class CreateTaskOutput(int id,
+        string title,
+        string? description,
+        DateTime createdAt,
+        DateTime? finishAt,
         Status status)
     {
         public int Id { get; set; } = id;

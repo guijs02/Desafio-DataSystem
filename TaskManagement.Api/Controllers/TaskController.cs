@@ -18,8 +18,6 @@ namespace TaskManagement.Api.Controllers
         IDeleteTaskUseCase deleteTaskUseCase)
         : ControllerBase
     {
-        //create all the endpoints for the Task entity (CRUD)
-        // GET /tasks
         [HttpGet]
         public async Task<IActionResult> GetAllTasks(
             [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, CancellationToken cancellationToken = default)
@@ -28,7 +26,6 @@ namespace TaskManagement.Api.Controllers
             return Ok(tasks);
         }
 
-        // GET /tasks/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTaskById(int id, CancellationToken cancellationToken = default)
         {
@@ -37,7 +34,6 @@ namespace TaskManagement.Api.Controllers
             return Ok(task);
         }
 
-        // POST /tasks
         [HttpPost]
         public async Task<IActionResult> CreateTask([FromBody] CreateTaskInput input,
             IValidator<CreateTaskInput> validator,
@@ -54,7 +50,6 @@ namespace TaskManagement.Api.Controllers
             return CreatedAtAction(nameof(GetTaskById), new { id = task.Id }, task);
         }
 
-        // PUT /tasks/{id}
         [HttpPut]
         public async Task<IActionResult> UpdateTask([FromBody] UpdateTaskInput input,
             IValidator<UpdateTaskInput> validator,
@@ -69,7 +64,6 @@ namespace TaskManagement.Api.Controllers
             return Ok(taskUpdated);
         }
 
-        // DELETE /tasks/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTask(int id, CancellationToken cancellationToken = default)
         {

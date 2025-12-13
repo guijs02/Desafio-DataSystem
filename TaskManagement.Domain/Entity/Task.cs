@@ -53,7 +53,7 @@ namespace TaskManagement.Domain.Entity
                 throw new DomainValidationException("Title cannot be empty or null.");
             }
 
-            if(Title.Length > 100)
+            if (Title.Length > 100)
             {
                 throw new DomainValidationException("Title cannot exceed 100 characters.");
             }

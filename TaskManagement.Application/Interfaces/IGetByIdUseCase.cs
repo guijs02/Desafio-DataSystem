@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TaskManagement.Application.UseCases.Get;
+﻿using TaskManagement.Application.UseCases.Get;
 
 namespace TaskManagement.Application.Interfaces
 {

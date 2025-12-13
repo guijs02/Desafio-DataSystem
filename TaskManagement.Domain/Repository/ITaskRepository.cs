@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using TaskManagement.Domain.Entity;
-using Task = System.Threading.Tasks.Task;
+﻿using Task = System.Threading.Tasks.Task;
 
 namespace TaskManagement.Domain.Repository
 {

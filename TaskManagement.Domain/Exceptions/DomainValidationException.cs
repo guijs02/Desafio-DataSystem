@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TaskManagement.Domain.Exception
+﻿namespace TaskManagement.Domain.Exception
 {
     public class DomainValidationException : System.Exception
     {

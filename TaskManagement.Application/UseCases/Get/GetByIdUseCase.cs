@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TaskManagement.Application.Interfaces;
+﻿using TaskManagement.Application.Interfaces;
 using TaskManagement.Domain.Exceptions;
 using TaskManagement.Domain.Repository;
 
