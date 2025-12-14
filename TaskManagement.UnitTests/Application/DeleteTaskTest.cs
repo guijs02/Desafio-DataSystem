@@ -15,11 +15,11 @@ namespace TaskManagement.UnitTests.Application
         {
             // Arrange
             var repositoryMock = new Mock<ITaskRepository>();
-            var task = new TaskEntity
-            (
+            var task = new TaskEntity(
                 "Test Task",
                 "This is a test task",
-                Status.Pending
+                Status.Pending,
+                DateTime.Now
             );
 
             repositoryMock.Setup(x => x.GetByIdAsync(1, It.IsAny<CancellationToken>()))

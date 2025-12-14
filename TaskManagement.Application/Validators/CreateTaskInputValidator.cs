@@ -13,7 +13,7 @@ namespace TaskManagement.Application.Validators
                 .MaximumLength(100).WithMessage("Title cannot exceed 100 characters.");
 
             RuleFor(x => x.FinishAt)
-                .Must(finishAt => !finishAt.HasValue || finishAt.Value >= DateTime.Now)
+                .Must((input, finishAt) => !finishAt.HasValue || finishAt.Value >= input.CreatedAt)
                 .WithMessage("Finish date cannot be earlier than creation date.");
         }
     }

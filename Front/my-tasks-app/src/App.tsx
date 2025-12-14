@@ -16,6 +16,7 @@ const INITIAL_FORM_DATA: CreateTaskInput = {
   title: '',
   description: '',
   finishAt: '',
+  createdAt: '',
   status: Status.Pendente,
 };
 
@@ -72,6 +73,17 @@ function App() {
     return `${year}-${month}-${day}T${hours}:${minutes}:00.000`;
   };
 
+  // Helper function to get current date in local ISO format
+  const getCurrentLocalISO = (): string => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}:00.000`;
+  };
+
   // Validações
   const validateForm = (): string | null => {
     if (formData.description && formData.description.length > 100) {
@@ -124,6 +136,7 @@ function App() {
       const submitData: CreateTaskInput = {
         ...formData,
         finishAt: formData.finishAt ? convertToLocalISO(formData.finishAt) : undefined,
+        createdAt: getCurrentLocalISO(),
       };
       await apiService.createTask(submitData);
       resetForm();
@@ -200,6 +213,7 @@ function App() {
       title: task.title,
       description: task.description || '',
       finishAt: task.finishAt ? convertISOToLocalDateTime(task.finishAt) : '',
+      createdAt: task.createdAt,
       status: task.status,
     });
     setShowCreateForm(false);

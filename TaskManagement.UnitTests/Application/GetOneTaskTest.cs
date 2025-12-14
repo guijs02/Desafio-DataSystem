@@ -23,11 +23,11 @@ namespace TaskManagement.UnitTests.Application
 
             //should setup repository to return a task when GetByIdAsync is called
             repositoryMock.Setup(x => x.GetByIdAsync(taskId, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new TaskEntity
-                (
+                .ReturnsAsync(new TaskEntity(
                     "Test Task",
                     "This is a test task",
-                    Status.Pending
+                    Status.Pending,
+                    DateTime.UtcNow
                 ));
 
             var output = await useCase.Handle(taskId, CancellationToken.None);

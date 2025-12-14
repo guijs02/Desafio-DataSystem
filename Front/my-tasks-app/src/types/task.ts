@@ -17,6 +17,7 @@ export interface CreateTaskInput {
   title: string;
   description?: string;
   finishAt?: string;
+  createdAt: string;
   status?: Status;
 }
 

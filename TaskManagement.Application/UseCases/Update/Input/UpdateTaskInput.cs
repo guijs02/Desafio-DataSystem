@@ -2,7 +2,11 @@
 
 namespace TaskManagement.Application.UseCases.Update.Input
 {
-    public class UpdateTaskInput(int id, string title, string? description, DateTime? finishAt, Status status)
+    public class UpdateTaskInput(int id,
+        string title, 
+        string? description, 
+        DateTime? finishAt, 
+        Status status)
     {
 
         //create properties for Title, Description, FinishAt and Status

@@ -20,13 +20,23 @@ namespace TaskManagement.UnitTests.Application
             var useCase = new GetAllTasksUseCase(repositoryMock.Object);
             var tasks = new List<TaskEntity>
             {
-                new("Task 1", "Description 1", Status.Pending),
-                new("Task 2", "Description 2", Status.Completed)
+                new(
+                    "Task 1",
+                    "Description 1",
+                    Status.Pending,
+                    DateTime.Now
+                ),
+                new(
+                    "Task 2",
+                    "Description 2",
+                    Status.Completed,
+                    DateTime.Now
+                )
             };
             //should setup repository to return a list of tasks when GetAllAsync is called
             repositoryMock
                 .Setup(x =>
-                x.GetAllAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
+                    x.GetAllAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(tasks);
             // Act
             var output = await useCase.Handle(1, 10, CancellationToken.None);
@@ -53,8 +63,8 @@ namespace TaskManagement.UnitTests.Application
             //should setup repository to return an empty list when GetAllAsync is called
             repositoryMock
                 .Setup(x =>
-                x.GetAllAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync([]);
+                    x.GetAllAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new List<TaskEntity>());
             // Act
             var output = await useCase.Handle(1, 10, CancellationToken.None);
             // Assert

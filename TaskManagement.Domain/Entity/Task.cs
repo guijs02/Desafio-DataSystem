@@ -11,13 +11,13 @@ namespace TaskManagement.Domain.Entity
         public DateTime? FinishAt { get; private set; }
         public Status Status { get; private set; }
 
-        public Task(string title, string? description, Status status, DateTime? finishAt = null)
+        public Task(string title, string? description, Status status, DateTime createdAt, DateTime? finishAt = null)
         {
             Title = title;
             Description = description;
             FinishAt = finishAt;
             Status = status;
-            CreatedAt = DateTime.Now;
+            CreatedAt = createdAt;
 
             Validate();
         }
@@ -33,11 +33,13 @@ namespace TaskManagement.Domain.Entity
             Description = description;
             Validate();
         }
+
         public void UpdateStatus(Status status)
         {
             Status = status;
             Validate();
         }
+
         public void UpdateFinishAt(DateTime? finishAt)
         {
             FinishAt = finishAt;

@@ -8,7 +8,6 @@ namespace TaskManagement.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
     public class TaskController(
         IGetByIdUseCase getByIdUseCase,
         ICreateTaskUseCase createTaskUseCase,

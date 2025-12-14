@@ -6,6 +6,7 @@ namespace TaskManagement.Application.UseCases.Create.Input
         string title,
         string? description,
         DateTime? finishAt,
+        DateTime createdAt,
         Status status)
     {
 
@@ -16,8 +17,7 @@ namespace TaskManagement.Application.UseCases.Create.Input
 
         public DateTime? FinishAt { get; set; } = finishAt;
 
+        public DateTime CreatedAt { get; set; } = createdAt;
         public Status Status { get; set; } = status;
-
-
     }
 }

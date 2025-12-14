@@ -32,8 +32,7 @@ namespace TaskManagement.UnitTests.Application
 
             //should setup the repository to return a task when GetByIdAsync is called
             repository.Setup(r => r.GetByIdAsync(updateTaskInput.Id, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new TaskEntity
-                (
+                .ReturnsAsync(new TaskEntity(
                     "Old Task Title",
                     "Old Task Description",
                     Status.Pending,
@@ -70,8 +69,7 @@ namespace TaskManagement.UnitTests.Application
 
             //should setup the repository to return a task when GetByIdAsync is called
             repository.Setup(r => r.GetByIdAsync(updateTaskInput.Id, It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new TaskEntity
-                (
+                .ReturnsAsync(new TaskEntity(
                     "Old Task Title",
                     "Old Task Description",
                     Status.Pending,

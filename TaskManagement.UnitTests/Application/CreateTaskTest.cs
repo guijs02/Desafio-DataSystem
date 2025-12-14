@@ -24,10 +24,20 @@ namespace TaskManagement.UnitTests.Application
                 Title = "Test Task",
                 Description = "This is a test task.",
                 FinishAt = DateTime.UtcNow.AddDays(1),
-                Status = Status.Pending
+                Status = Status.Pending,
+                CreatedAt = DateTime.UtcNow,
             };
 
-            var task = await useCase.Handle(new CreateTaskInput(entity.Title, entity.Description, entity.FinishAt, entity.Status), CancellationToken.None);
+            var task = await useCase.Handle(
+                new CreateTaskInput(
+                    entity.Title,
+                    entity.Description,
+                    entity.FinishAt,
+                    entity.CreatedAt,
+                    entity.Status
+                ),
+                CancellationToken.None
+            );
 
             task.Should().NotBeNull();
             task.Title.Should().Be(entity.Title);
@@ -51,11 +61,21 @@ namespace TaskManagement.UnitTests.Application
                 Title = title,
                 Description = "This is a test task.",
                 FinishAt = DateTime.Now.AddDays(1),
+                CreatedAt = DateTime.UtcNow,
             };
 
             await Assert.ThrowsAsync<DomainValidationException>(async () =>
             {
-                await useCase.Handle(new CreateTaskInput(entity.Title!, entity.Description, entity.FinishAt, Status.Pending), CancellationToken.None);
+                await useCase.Handle(
+                    new CreateTaskInput(
+                        entity.Title!,
+                        entity.Description,
+                        entity.FinishAt,
+                        entity.CreatedAt,
+                        Status.Pending
+                    ),
+                    CancellationToken.None
+                );
             });
         }
 
@@ -71,10 +91,20 @@ namespace TaskManagement.UnitTests.Application
                 Title = longTitle,
                 Description = "This is a test task.",
                 FinishAt = DateTime.UtcNow.AddDays(1),
+                CreatedAt = DateTime.UtcNow,
             };
             await Assert.ThrowsAsync<DomainValidationException>(async () =>
             {
-                await useCase.Handle(new CreateTaskInput(entity.Title, entity.Description, entity.FinishAt, Status.Pending), CancellationToken.None);
+                await useCase.Handle(
+                    new CreateTaskInput(
+                        entity.Title,
+                        entity.Description,
+                        entity.FinishAt,
+                        entity.CreatedAt,
+                        Status.Pending
+                    ),
+                    CancellationToken.None
+                );
             });
 
         }

@@ -20,7 +20,8 @@ namespace TaskManagement.UnitTests.Domain
             var taskEntity = new Task(
                 entity.Title,
                 entity.Description,
-                entity.Status
+                entity.Status,
+                DateTime.UtcNow
             );
 
             taskEntity.Title.Should().Be(entity.Title);
@@ -37,7 +38,8 @@ namespace TaskManagement.UnitTests.Domain
             var taskEntity = new Task(
                 "Initial Title",
                 "This is a test task.",
-                Status.Pending
+                Status.Pending, 
+                DateTime.UtcNow
             );
             var newTitle = "Updated Title";
             taskEntity.UpdateTitle(newTitle);
@@ -51,7 +53,8 @@ namespace TaskManagement.UnitTests.Domain
             var taskEntity = new Task(
                 "Initial Title",
                 "This is a test task.",
-                Status.Pending
+                Status.Pending,
+                DateTime.UtcNow
             );
             var newDescription = "Updated Description";
             taskEntity.UpdateDescription(newDescription);
@@ -65,7 +68,8 @@ namespace TaskManagement.UnitTests.Domain
             var taskEntity = new Task(
                 "Initial Title",
                 "This is a test task.",
-                Status.InProgress
+                Status.InProgress,
+                DateTime.UtcNow
             );
             var newStatus = Status.Completed;
             taskEntity.UpdateStatus(newStatus);
@@ -79,7 +83,8 @@ namespace TaskManagement.UnitTests.Domain
             var taskEntity = new Task(
                 "Initial Title",
                 "This is a test task.",
-                Status.Pending
+                Status.Pending,
+                DateTime.UtcNow
             );
             var newFinishAt = DateTime.UtcNow.AddDays(2);
             taskEntity.UpdateFinishAt(newFinishAt);
@@ -93,7 +98,8 @@ namespace TaskManagement.UnitTests.Domain
             Action action = () => new Task(
                 "",
                 "This is a test task.",
-                Status.Pending
+                Status.Pending,
+                DateTime.UtcNow
             );
 
             action.Should().Throw<DomainValidationException>()
@@ -108,6 +114,7 @@ namespace TaskManagement.UnitTests.Domain
                 "Test Task",
                 "This is a test task.",
                 Status.Pending,
+                DateTime.UtcNow,
                 DateTime.UtcNow.AddDays(-1)
             );
             action.Should().Throw<DomainValidationException>()
@@ -122,7 +129,8 @@ namespace TaskManagement.UnitTests.Domain
             Action action = () => new Task(
                 longTitle,
                 "This is a test task.",
-                Status.Pending
+                Status.Pending,
+                DateTime.UtcNow
             );
             action.Should().Throw<DomainValidationException>()
                 .WithMessage("Title cannot exceed 100 characters.");

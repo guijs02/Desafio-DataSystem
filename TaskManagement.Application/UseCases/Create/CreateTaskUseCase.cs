@@ -10,7 +10,7 @@ namespace TaskManagement.Application.UseCases.Create
     {
         public async Task<CreateTaskOutput> Handle(CreateTaskInput input, CancellationToken cancellationToken)
         {
-            var task = new TaskEntity(input.Title, input.Description, input.Status, input.FinishAt);
+            var task = new TaskEntity(input.Title, input.Description, input.Status, input.CreatedAt, input.FinishAt);
 
             await repository.CreateAsync(task, cancellationToken);
 
