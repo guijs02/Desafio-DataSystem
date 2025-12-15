@@ -31,7 +31,6 @@ namespace TaskManagement.UnitTests.Domain
 
         }
 
-        // should update title ok
         [Fact(DisplayName = nameof(ShouldUpdateTitleOk))]
         public void ShouldUpdateTitleOk()
         {
@@ -46,7 +45,6 @@ namespace TaskManagement.UnitTests.Domain
             taskEntity.Title.Should().Be(newTitle);
         }
 
-        // should update description ok
         [Fact(DisplayName = nameof(ShouldUpdateDescriptionOk))]
         public void ShouldUpdateDescriptionOk()
         {
@@ -61,7 +59,6 @@ namespace TaskManagement.UnitTests.Domain
             taskEntity.Description.Should().Be(newDescription);
         }
 
-        // should update status ok
         [Fact(DisplayName = nameof(ShouldUpdateStatusOk))]
         public void ShouldUpdateStatusOk()
         {
@@ -76,7 +73,7 @@ namespace TaskManagement.UnitTests.Domain
             taskEntity.Status.Should().Be(newStatus);
 
         }
-        // update FinishAt ok
+        
         [Fact(DisplayName = nameof(ShouldUpdateFinishAtOk))]
         public void ShouldUpdateFinishAtOk()
         {
@@ -91,7 +88,6 @@ namespace TaskManagement.UnitTests.Domain
             taskEntity.FinishAt.Should().Be(newFinishAt);
         }
 
-        // Should thorw error when title is empty
         [Fact(DisplayName = nameof(ShouldThrowErrorWhenTitleIsEmpty))]
         public void ShouldThrowErrorWhenTitleIsEmpty()
         {
@@ -106,7 +102,6 @@ namespace TaskManagement.UnitTests.Domain
                 .WithMessage("Title cannot be empty or null.");
         }
 
-        // Should throw error when FinishAt is earlier than CreatedAt
         [Fact(DisplayName = nameof(ShouldThrowErrorWhenFinishAtIsEarlierThanCreatedAt))]
         public void ShouldThrowErrorWhenFinishAtIsEarlierThanCreatedAt()
         {
@@ -121,7 +116,6 @@ namespace TaskManagement.UnitTests.Domain
                 .WithMessage("Finish date cannot be earlier than creation date.");
         }
 
-        // Should throw error when title exceeds 100 characters
         [Fact(DisplayName = nameof(ShouldThrowErrorWhenTitleExceeds100Characters))]
         public void ShouldThrowErrorWhenTitleExceeds100Characters()
         {

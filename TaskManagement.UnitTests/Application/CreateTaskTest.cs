@@ -11,7 +11,6 @@ namespace TaskManagement.UnitTests.Application
 {
     public class CreateTaskTest
     {
-        //should create a task with success here
         [Fact(DisplayName = nameof(CreateTaskWithSuccess))]
         public async Task CreateTaskWithSuccess()
         {
@@ -47,7 +46,6 @@ namespace TaskManagement.UnitTests.Application
 
         }
 
-        //should thorw error when title is empty
         [Theory(DisplayName = nameof(ShouldThrowErrorWhenTitleIsEmpty))]
         [InlineData("")]
         [InlineData(null)]
@@ -81,7 +79,6 @@ namespace TaskManagement.UnitTests.Application
             await act.Should().ThrowAsync<DomainValidationException>();
         }
 
-        //should thorw error when title exceeds 100 characters
         [Fact(DisplayName = nameof(ShouldThrowErrorWhenTitleExceeds100Characters))]
         public async Task ShouldThrowErrorWhenTitleExceeds100Characters()
         {

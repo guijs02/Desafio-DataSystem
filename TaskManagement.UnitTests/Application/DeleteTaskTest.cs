@@ -11,7 +11,6 @@ namespace TaskManagement.UnitTests.Application
 {
     public class DeleteTaskTest
     {
-
         [Fact(DisplayName = nameof(ShouldDeleteTaskFromRepository))]
         public async Task ShouldDeleteTaskFromRepository()
         {
