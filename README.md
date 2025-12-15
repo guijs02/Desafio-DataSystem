@@ -41,6 +41,8 @@ Backend (.NET)
    dotnet restore
    dotnet run
    ```
+- Pode ser executado direto na IDE sem precisar dos comandos se preferir.
+
 3. A API será exposta na porta configurada (ver `TaskManagement.Api/Properties/launchSettings.json` ou `appsettings.Development.json`).
 
 Frontend (aplicação Vite/React dentro do projeto)
@@ -53,10 +55,12 @@ Frontend (aplicação Vite/React dentro do projeto)
    npm install
    npm run dev
    ```
-3. O comando `npm run dev` mostrará a URL local (normalmente `http://localhost:5173` ou similar).
+3. O comando `npm run dev` mostrará a URL local (normalmente `https://localhost:5173` ou similar).
 
 Observações
 - Se o repositório atual estiver em uma máquina Windows e você usar PowerShell, os comandos acima funcionam; no Linux/macOS use o terminal correspondente.
+- É recomendável que execute o frontend no VSCode e o backend no Visual Studio/Rider.
+
 
 Comandos úteis
 - Verificar status do git:
