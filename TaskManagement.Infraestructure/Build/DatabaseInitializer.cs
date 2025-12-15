@@ -13,7 +13,7 @@ namespace TaskManagement.Infraestructure.Build
 
             if (!await db.Database.CanConnectAsync())
             {
-                db.Database.Migrate();
+                await db.Database.MigrateAsync();
             }
         }
     }
