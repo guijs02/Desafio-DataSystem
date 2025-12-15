@@ -17,6 +17,9 @@ builder.Services.AddCorsConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
+// Ensure database exists (create by applying migrations only when DB cannot be connected)
+await app.Services.EnsureDatabaseCreated();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
