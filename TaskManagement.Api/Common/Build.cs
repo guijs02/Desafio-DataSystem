@@ -2,7 +2,6 @@
 {
     public static class Build
     {
-        //add cors configuration method
         public static IServiceCollection AddCorsConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             var backendUrl = configuration["Cors:BackendUrl"] ?? string.Empty;

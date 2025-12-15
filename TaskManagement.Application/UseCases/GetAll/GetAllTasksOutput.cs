@@ -2,19 +2,25 @@
 
 namespace TaskManagement.Application.UseCases.GetAll
 {
-    public class GetAllTasksOutput
+    public class GetAllTasksOutput(
+        int id,
+        string title,
+        string description,
+        DateTime createdAt,
+        DateTime? finishAt,
+        Status status,
+        int? totalCount,
+        int? pageNumber,
+        int? pageSize)
     {
-        //should have properties Id, Title, Description, Status, CreatedAt, FinishAt and pagination info
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? FinishAt { get; set; }
-        public Status Status { get; set; }
-        public int? TotalCount { get; set; }
-        public int? PageNumber { get; set; }
-        public int? PageSize { get; set; }
-
-
+        public int Id { get; set; } = id;
+        public string Title { get; set; } = title;
+        public string Description { get; set; } = description;
+        public DateTime CreatedAt { get; set; } = createdAt;
+        public DateTime? FinishAt { get; set; } = finishAt;
+        public Status Status { get; set; } = status;
+        public int? TotalCount { get; set; } = totalCount;
+        public int? PageNumber { get; set; } = pageNumber;
+        public int? PageSize { get; set; } = pageSize;
     }
 }

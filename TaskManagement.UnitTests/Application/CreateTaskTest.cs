@@ -64,7 +64,7 @@ namespace TaskManagement.UnitTests.Application
                 CreatedAt = DateTime.UtcNow,
             };
 
-            await Assert.ThrowsAsync<DomainValidationException>(async () =>
+            var act = async () =>
             {
                 await useCase.Handle(
                     new CreateTaskInput(
@@ -76,7 +76,9 @@ namespace TaskManagement.UnitTests.Application
                     ),
                     CancellationToken.None
                 );
-            });
+            };
+
+            await act.Should().ThrowAsync<DomainValidationException>();
         }
 
         //should thorw error when title exceeds 100 characters
@@ -93,20 +95,19 @@ namespace TaskManagement.UnitTests.Application
                 FinishAt = DateTime.UtcNow.AddDays(1),
                 CreatedAt = DateTime.UtcNow,
             };
-            await Assert.ThrowsAsync<DomainValidationException>(async () =>
-            {
-                await useCase.Handle(
-                    new CreateTaskInput(
-                        entity.Title,
-                        entity.Description,
-                        entity.FinishAt,
-                        entity.CreatedAt,
-                        Status.Pending
-                    ),
-                    CancellationToken.None
-                );
-            });
 
+            var act = async () =>
+            {
+                await useCase.Handle(new CreateTaskInput(
+                    entity.Title,
+                    entity.Description,
+                    entity.FinishAt,
+                    entity.CreatedAt,
+                    Status.Pending
+                ), CancellationToken.None);
+            };
+
+            await act.Should().ThrowAsync<DomainValidationException>();
         }
     }
 }

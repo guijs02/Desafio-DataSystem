@@ -27,9 +27,9 @@ namespace TaskManagement.Infraestructure.Persistence
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<TaskEntity?> GetByIdAsync(int id, CancellationToken cancellationToken)
+        public Task<TaskEntity?> GetByIdAsync(int id, CancellationToken cancellationToken)
         {
-            return await context.Tasks
+            return context.Tasks
                 .AsNoTracking()
                 .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
         }

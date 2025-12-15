@@ -38,7 +38,7 @@ namespace TaskManagement.UnitTests.Domain
             var taskEntity = new Task(
                 "Initial Title",
                 "This is a test task.",
-                Status.Pending, 
+                Status.Pending,
                 DateTime.UtcNow
             );
             var newTitle = "Updated Title";

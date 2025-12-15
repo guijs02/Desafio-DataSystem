@@ -11,7 +11,6 @@ namespace TaskManagement.Application.Validators
                 .NotEmpty().WithMessage("Title cannot be empty or null.")
                 .NotNull().WithMessage("Title cannot be empty or null.")
                 .MaximumLength(100).WithMessage("Title cannot exceed 100 characters.");
-
         }
     }
 }

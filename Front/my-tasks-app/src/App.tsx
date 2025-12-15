@@ -86,8 +86,12 @@ function App() {
 
   // Validações
   const validateForm = (): string | null => {
-    if (formData.description && formData.description.length > 100) {
-      return 'A descrição não pode ter mais de 100 caracteres.';
+    if (formData.title && formData.title.length > 100) {
+      return 'O título não pode ter mais de 100 caracteres.';
+    }
+    
+    if (formData.description && formData.description.length > 500) {
+      return 'A descrição não pode ter mais de 500 caracteres.';
     }
     
     if (formData.finishAt) {
@@ -295,6 +299,7 @@ function App() {
               <input
                 type="text"
                 id="title"
+                maxLength={100}
                 value={formData.title}
                 onChange={(e) => handleInputChange('title', e.target.value)}
                 required
@@ -306,7 +311,7 @@ function App() {
               <label htmlFor="description">
                 Descrição
                 <span className="char-counter">
-                  ({formData.description?.length || 0}/100)
+                  ({formData.description?.length || 0}/500)
                 </span>
               </label>
               <textarea
@@ -314,17 +319,17 @@ function App() {
                 value={formData.description}
                 onChange={(e) => {
                   const value = e.target.value;
-                  if (value.length <= 100) {
+                  if (value.length <= 500) {
                     handleInputChange('description', value);
                   }
                 }}
                 rows={4}
                 disabled={loading}
-                maxLength={100}
+                maxLength={500}
               />
-              {formData.description && formData.description.length > 90 && (
+              {formData.description && formData.description.length > 480 && (
                 <small className="char-warning">
-                  Restam {100 - (formData.description.length || 0)} caracteres
+                  Restam {500 - (formData.description.length || 0)} caracteres
                 </small>
               )}
             </div>

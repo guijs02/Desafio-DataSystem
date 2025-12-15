@@ -11,13 +11,9 @@ namespace TaskManagement.Application.UseCases.Create.Output
     {
         public int Id { get; set; } = id;
         public string Title { get; set; } = title;
-
         public string? Description { get; set; } = description;
-
         public DateTime CreatedAt { get; set; } = createdAt;
-
         public DateTime? FinishAt { get; set; } = finishAt;
-
         public Status Status { get; set; } = status;
     }
 }

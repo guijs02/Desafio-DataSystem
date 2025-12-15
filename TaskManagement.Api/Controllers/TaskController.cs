@@ -20,16 +20,13 @@ namespace TaskManagement.Api.Controllers
         public async Task<IActionResult> GetAllTasks(
             [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, CancellationToken cancellationToken = default)
         {
-            var tasks = await getAllTasksUseCase.Handle(pageNumber, pageSize, cancellationToken);
-            return Ok(tasks);
+            return Ok(await getAllTasksUseCase.Handle(pageNumber, pageSize, cancellationToken));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTaskById(int id, CancellationToken cancellationToken = default)
         {
-            var task = await getByIdUseCase.Handle(id, cancellationToken);
-
-            return Ok(task);
+            return Ok(await getByIdUseCase.Handle(id, cancellationToken));
         }
 
         [HttpPost]
@@ -40,9 +37,7 @@ namespace TaskManagement.Api.Controllers
             var validate = validator.Validate(input);
 
             if (!validate.IsValid)
-            {
                 return BadRequest(validate.Errors.Select(s => new { mesage = s.ErrorMessage }));
-            }
 
             var task = await createTaskUseCase.Handle(input, cancellationToken);
             return CreatedAtAction(nameof(GetTaskById), new { id = task.Id }, task);
@@ -58,8 +53,7 @@ namespace TaskManagement.Api.Controllers
             if (!validate.IsValid)
                 return BadRequest(validate.Errors.Select(s => new { mesage = s.ErrorMessage }));
 
-            var taskUpdated = await updateTaskUseCase.Handle(input, cancellationToken);
-            return Ok(taskUpdated);
+            return Ok(await updateTaskUseCase.Handle(input, cancellationToken));
         }
 
         [HttpDelete("{id}")]

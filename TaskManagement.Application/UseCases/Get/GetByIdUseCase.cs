@@ -8,7 +8,6 @@ namespace TaskManagement.Application.UseCases.Get
     {
         public async Task<GetByIdOutput> Handle(int id, CancellationToken cancellationToken)
         {
-            // Implementation goes here
             var task = await repository.GetByIdAsync(id, cancellationToken);
 
             if (task == null)

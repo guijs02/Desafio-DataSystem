@@ -16,7 +16,6 @@ namespace TaskManagement.Application.DIP
     {
         public static IServiceCollection AddApplicationDependencies(this IServiceCollection service)
         {
-            // create all use case dependencies injections here
             service.AddScoped<ICreateTaskUseCase, CreateTaskUseCase>();
             service.AddScoped<IDeleteTaskUseCase, DeleteTaskUseCase>();
             service.AddScoped<IGetAllTasksUseCase, GetAllTasksUseCase>();

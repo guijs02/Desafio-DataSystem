@@ -1,7 +1,6 @@
 ﻿namespace TaskManagement.Domain.Exceptions
 {
-    public class TaskNotFoundException : System.Exception
+    public class TaskNotFoundException(string message) : System.Exception(message)
     {
-        public TaskNotFoundException(string message) : base(message) { }
     }
 }

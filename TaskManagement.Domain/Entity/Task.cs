@@ -1,4 +1,4 @@
-﻿using TaskManagement.Domain.Exception;
+﻿using TaskManagement.Domain.Validation;
 
 namespace TaskManagement.Domain.Entity
 {
@@ -46,36 +46,12 @@ namespace TaskManagement.Domain.Entity
             Validate();
         }
 
-        //validate methods can be added here
         public void Validate()
         {
-            // Example validation logic
-            if (string.IsNullOrWhiteSpace(Title))
-            {
-                throw new DomainValidationException("Title cannot be empty or null.");
-            }
-
-            if (Title.Length > 100)
-            {
-                throw new DomainValidationException("Title cannot exceed 100 characters.");
-            }
-
-            if (FinishAt.HasValue && FinishAt < CreatedAt)
-            {
-                throw new DomainValidationException("Finish date cannot be earlier than creation date.");
-            }
-
-            if (CreatedAt == default)
-            {
-                throw new DomainValidationException("CreatedAt must be set to the current date and time.");
-            }
+            DomainValidation.TitleIsNullOrWhiteSpace(Title);
+            DomainValidation.TitleMaxLength(Title);
+            DomainValidation.FinishAtIsEarlierThanCreatedAt(FinishAt, CreatedAt);
+            DomainValidation.CreatedAtDefault(CreatedAt);
         }
-
-    }
-    public enum Status
-    {
-        Pending,
-        InProgress,
-        Completed,
     }
 }

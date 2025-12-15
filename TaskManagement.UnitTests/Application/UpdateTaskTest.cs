@@ -13,7 +13,7 @@ namespace TaskManagement.UnitTests.Application
 {
     public class UpdateTaskTest
     {
-        //should update a task with success here
+
         [Fact(DisplayName = nameof(UpdateTaskWithSuccess))]
         public async Task UpdateTaskWithSuccess()
         {
@@ -30,7 +30,6 @@ namespace TaskManagement.UnitTests.Application
                 Status.InProgress
             );
 
-            //should setup the repository to return a task when GetByIdAsync is called
             repository.Setup(r => r.GetByIdAsync(updateTaskInput.Id, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new TaskEntity(
                     "Old Task Title",
@@ -50,9 +49,8 @@ namespace TaskManagement.UnitTests.Application
 
         }
 
-        //update task with failed
-        [Fact(DisplayName = nameof(UpdateTaskWithFailed))]
-        public async Task UpdateTaskWithFailed()
+        [Fact(DisplayName = nameof(ShouldThrowErrorWhenTitleIsEmpty))]
+        public async Task ShouldThrowErrorWhenTitleIsEmpty()
         {
             var repository = new Mock<ITaskRepository>();
 
@@ -67,7 +65,6 @@ namespace TaskManagement.UnitTests.Application
                 Status.InProgress
             );
 
-            //should setup the repository to return a task when GetByIdAsync is called
             repository.Setup(r => r.GetByIdAsync(updateTaskInput.Id, It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new TaskEntity(
                     "Old Task Title",
@@ -80,8 +77,7 @@ namespace TaskManagement.UnitTests.Application
 
             repository.Verify(r => r.UpdateAsync(It.IsAny<TaskEntity>(), It.IsAny<CancellationToken>()), Times.Never);
 
-            await Assert.ThrowsAsync<DomainValidationException>(act);
-
+            await act.Should().ThrowAsync<DomainValidationException>();
         }
     }
 }

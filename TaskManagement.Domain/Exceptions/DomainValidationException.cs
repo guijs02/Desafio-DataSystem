@@ -1,7 +1,6 @@
 ﻿namespace TaskManagement.Domain.Exception
 {
-    public class DomainValidationException : System.Exception
+    public class DomainValidationException(string message) : System.Exception(message)
     {
-        public DomainValidationException(string message) : base(message) { }
     }
 }

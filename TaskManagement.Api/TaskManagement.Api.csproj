@@ -18,8 +18,4 @@
 		<ProjectReference Include="..\TaskManagement.Infraestructure\TaskManagement.Infraestructure.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Filters\" />
-	</ItemGroup>
-
 </Project>

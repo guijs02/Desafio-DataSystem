@@ -24,6 +24,5 @@ namespace TaskManagement.Infraestructure.Build
 
             return service;
         }
-
     }
 }
