@@ -1,26 +1,26 @@
-# TaskManagement - Instruções rápidas
+# TaskManagement - InstruÃ§Ãµes rÃ¡pidas
 
-Este README descreve passos mínimos para executar o projeto backend e o frontend localmente, partindo deste repositório.
+Este README descreve passos mÃ­nimos para executar o projeto backend e o frontend localmente, partindo deste repositÃ³rio.
 
-Pré-requisitos
-- Instalar o `.NET 10` (SDK). Verifique a instalação com:
+PrÃ©-requisitos
+- Instalar o `.NET 10` (SDK). Verifique a instalaÃ§Ã£o com:
   ```sh
   dotnet --version
   ```
-  A saída deve começar com `10`.
+  A saÃ­da deve comeÃ§ar com `10`.
 - Instalar o Docker (inclui Docker Compose). Verifique com:
   ```sh
   docker --version
   docker compose version
   ```
-- Instalar o Node.js (versão compatível com o frontend). Verifique com:
+- Instalar o Node.js (versÃ£o compatÃ­vel com o frontend). Verifique com:
   ```sh
   node --version
   npm --version
   ```
 
-Rodando os serviços dependentes (containers)
-1. A partir da raiz do repositório (onde este `README.md` está), suba os containers com:
+- Para subir o banco da dados (SQL Server)
+1. A partir da raiz do repositÃ³rio (onde este `README.md` estÃ¡), suba o container com:
    ```sh
    docker compose up -d
    ```
@@ -39,25 +39,24 @@ Backend (.NET)
    dotnet restore
    dotnet run
    ```
-3. A API será exposta na porta configurada (ver `TaskManagement.Api/Properties/launchSettings.json` ou `appsettings.Development.json`).
+3. A API serÃ¡ exposta na porta configurada (ver `TaskManagement.Api/Properties/launchSettings.json` ou `appsettings.Development.json`).
 
-Frontend (aplicação Vite/React dentro do projeto)
+Frontend (aplicaÃ§Ã£o Vite/React dentro do projeto)
 1. Entre na pasta do frontend:
    ```sh
    cd Front/my-tasks-app
    ```
-2. Instalar dependências e iniciar o servidor de desenvolvimento:
+2. Instalar dependÃªncias e iniciar o servidor de desenvolvimento:
    ```sh
    npm install
    npm run dev
    ```
-3. O comando `npm run dev` mostrará a URL local (normalmente `http://localhost:5173` ou similar).
+3. O comando `npm run dev` mostrarÃ¡ a URL local (normalmente `http://localhost:5173` ou similar).
 
-Observações
-- Se houver variáveis de ambiente (ex.: conexão com a API), ajuste conforme os exemplos/arquivos `.env` do frontend.
-- Se o repositório atual estiver em uma máquina Windows e você usar PowerShell, os comandos acima funcionam; no Linux/macOS use o terminal correspondente.
+ObservaÃ§Ãµes
+- Se o repositÃ³rio atual estiver em uma mÃ¡quina Windows e vocÃª usar PowerShell, os comandos acima funcionam; no Linux/macOS use o terminal correspondente.
 
-Comandos úteis
+Comandos Ãºteis
 - Verificar status do git:
   ```sh
   git status
@@ -67,4 +66,4 @@ Comandos úteis
   docker compose logs -f
   ```
 
-Pronto — seguindo esses passos você terá o backend em `.NET 10`, os containers necessários ativos e o frontend rodando em modo de desenvolvimento.
+Pronto â€” seguindo esses passos vocÃª terÃ¡ o backend em `.NET 10`, os containers necessÃ¡rios ativos e o frontend rodando em modo de desenvolvimento.
