@@ -7,6 +7,8 @@ Pré-requisitos
   ```sh
   dotnet --version
   ```
+  https://dotnet.microsoft.com/pt-br/download/dotnet/10.0
+  <br>
   A saída deve começar com `10`.
 - Instalar o Docker (inclui Docker Compose). Verifique com:
   ```sh
